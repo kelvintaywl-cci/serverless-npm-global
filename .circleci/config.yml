@@ -39,6 +39,8 @@ jobs:
           name: Check Serverless
           when: always
           command: |
+            npx sls
+            command -v sls
             command -v serverless
       - run:
           name: Install Serverless globally
