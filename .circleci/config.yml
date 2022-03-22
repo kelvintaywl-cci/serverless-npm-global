@@ -1,0 +1,39 @@
+version: 2.1
+
+jobs:
+  test-install:
+    machine:
+      image: ubuntu-2004:202201-02
+    steps:
+      - run:
+          name: Inspect Node
+          command: |
+            which node
+            node -v
+            which npm
+            npm -v
+      - run:
+          name: Set NPM global
+          command: |
+            mkdir ~/project/npm-global
+            npm config set prefix "~/bil/npm-global"
+            echo "export PATH=~/project/npm-global/bin:$PATH" >> $BASH_ENV
+            echo "~/project/npm-global/bin/serverless@2.5.0" >> ci-npm-install-global.txt
+      - run:
+          name: Install Serverless globally
+          command: |
+            if [ ! "$(command -v serverless)" ]; then
+              npm install --global serverless@2.5.0
+            else
+              echo "Serverless Framework CLI @2.5.0 already installed globally"
+            fi
+      - run:
+          name: Test
+          command: |
+            serverless --help
+            npx sls --help
+            
+workflows:
+  main:
+    jobs:
+      - test
