@@ -36,6 +36,11 @@ jobs:
             npm config get prefix
             npm list -g --depth=0
       - run:
+          name: Check Serverless
+          when: always
+          command: |
+            command -v serverless
+      - run:
           name: Install Serverless globally
           command: |
             if [ ! "$(command -v serverless)" ]; then
