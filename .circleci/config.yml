@@ -24,7 +24,7 @@ jobs:
           command: |
             mkdir ~/project/npm-global
             npm config set prefix "~/project/npm-global"
-            echo "export PATH=~/project/npm-global/bin:$PATH" >> $BASH_ENV
+            # echo "export PATH=~/project/npm-global/bin:$PATH" >> $BASH_ENV
             # echo "~/project/npm-global/bin/serverless@2.5.0" >> ci-npm-install-global.txt
             npm config get prefix
       - run:
