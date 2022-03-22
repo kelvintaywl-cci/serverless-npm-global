@@ -36,4 +36,4 @@ jobs:
 workflows:
   main:
     jobs:
-      - test
+      - test-install
