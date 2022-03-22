@@ -13,6 +13,10 @@ jobs:
             which npm
             npm -v
       - run:
+          name: Check where NPM global installs
+          command: |
+            npm list -g | head -1
+      - run:
           name: Set NPM global
           command: |
             mkdir ~/project/npm-global
