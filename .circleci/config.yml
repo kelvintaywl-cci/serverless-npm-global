@@ -15,8 +15,10 @@ jobs:
       - run:
           name: Check where NPM global installs
           command: |
-            npm list -g | head -1
             pwd
+            npm list -g | head -1
+            npm list -g --depth=0
+            npm config get prefix
       - run:
           name: Set NPM global
           command: |
