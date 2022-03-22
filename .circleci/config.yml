@@ -27,6 +27,8 @@ jobs:
 #             echo "export PATH=~/project/npm-global/bin:$PATH" >> $BASH_ENV
 #             echo "~/project/npm-global/bin/serverless@2.5.0" >> ci-npm-install-global.txt
 #             npm config get prefix
+      - restore_cache:
+          key: npm-global-{{ .Branch }}
       - run:
           name: Check NPM config
           when: always
@@ -41,12 +43,16 @@ jobs:
             else
               echo "Serverless Framework CLI @2.5.0 already installed globally"
             fi
+      - save_cache:
+          paths:
+            - /opt/circleci/.nvm/versions/node/v16.13.2/lib/node_modules
+          key: npm-global-{{ .Branch }}
       - run:
           name: Test
           command: |
             serverless --help
             npx sls --help
-            
+ 
 workflows:
   main:
     jobs:
