@@ -35,13 +35,13 @@ jobs:
           command: |
             npm config get prefix
             npm list -g --depth=0
-      - run:
-          name: Check Serverless
-          when: always
-          command: |
-            npx sls
-            command -v sls
-            command -v serverless
+#       - run:
+#           name: Check Serverless
+#           when: always
+#           command: |
+#             npx sls
+#             command -v sls
+#             command -v serverless
       - run:
           name: Install Serverless globally
           command: |
@@ -52,7 +52,7 @@ jobs:
             fi
       - save_cache:
           paths:
-            - /opt/circleci/.nvm/versions/node/v16.13.2/lib/node_modules
+            - /opt/circleci/.nvm/versions/node/v16.13.2
           key: npm-global-{{ .Branch }}
       - run:
           name: Test
