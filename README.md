@@ -1,6 +1,6 @@
 # serverless-npm-global
 
-Trying installation of Serverless Framework via NPM global
+Trying installation of Serverless Framework via NPM global and the Machine executor.
 
 ## Notes
 
