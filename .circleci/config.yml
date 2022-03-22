@@ -25,7 +25,14 @@ jobs:
             mkdir ~/project/npm-global
             npm config set prefix "~/project/npm-global"
             echo "export PATH=~/project/npm-global/bin:$PATH" >> $BASH_ENV
-            echo "~/project/npm-global/bin/serverless@2.5.0" >> ci-npm-install-global.txt
+            # echo "~/project/npm-global/bin/serverless@2.5.0" >> ci-npm-install-global.txt
+            npm config get prefix
+      - run:
+          name: Check NPM config
+          when: always
+          command: |
+            npm config get prefix
+            npm list -g --depth=0
       - run:
           name: Install Serverless globally
           command: |
